@@ -1,46 +1,46 @@
 {
-  "name": "li-wechat",
-  "version": "0.0.0",
-  "main": "lib/wechat.js",
-  "description": "wechat api ",
-  "homepage": "http://liangyali.com",
-  "bugs": "https://github.com/liangyali/li-wechat/issues",
-  "author": {
-    "name": "liangyali",
-    "email": "me@liangyali.com",
-    "url": "http://liangyali.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/liangyali/li-wechat"
-  },
-  "license": "MIT",
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    "li-wechat",
-    "wechat api "
-  ],
-  "devDependencies": {
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-nodeunit": "^0.3.3",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha-test": "^0.11.0",
-    "jshint-stylish": "^0.2.0",
-    "load-grunt-tasks": "^0.4.0",
-    "time-grunt": "^0.3.1"
-  },
-  "scripts": {
-    "test": "grunt"
-  },
-  "dependencies": {
-    "debug": "^1.0.4",
-    "ejs": "^1.0.0",
-    "request": "^2.37.0",
-    "sha1": "^1.1.0",
-    "should": "^4.0.4",
-    "supertest": "^0.13.0",
-    "xml2js": "^0.4.4"
-  }
+    "name": "li-wechat",
+    "version": "0.0.0",
+    "main": "lib/wechat.js",
+    "description": "wechat api ",
+    "homepage": "http://liangyali.com",
+    "bugs": "https://github.com/liangyali/li-wechat/issues",
+    "author": {
+        "name": "liangyali",
+        "email": "me@liangyali.com",
+        "url": "http://liangyali.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/liangyali/li-wechat"
+    },
+    "license": "MIT",
+    "files": [
+        "lib"
+    ],
+    "keywords": [
+        "li-wechat",
+        "wechat api "
+    ],
+    "devDependencies": {
+        "grunt-contrib-jshint": "^0.10.0",
+        "grunt-contrib-nodeunit": "^0.3.3",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt-mocha-test": "^0.11.0",
+        "jshint-stylish": "^0.2.0",
+        "load-grunt-tasks": "^0.4.0",
+        "time-grunt": "^0.3.1",
+        "should": "^4.0.4",
+        "supertest": "^0.13.0"
+    },
+    "scripts": {
+        "test": "grunt"
+    },
+    "dependencies": {
+        "debug": "^1.0.4",
+        "ejs": "^1.0.0",
+        "request": "^2.37.0",
+        "sha1": "^1.1.0",
+        "xml2js": "^0.4.4"
+    }
 }
