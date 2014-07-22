@@ -1,4 +1,4 @@
-# 微信公众平台消息接口 [![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat)
+# 微信公众平台消息接口 [![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat) [![Coverage Status](https://img.shields.io/coveralls/liangyali/li-wechat.svg)](https://coveralls.io/r/liangyali/li-wechat)
 
 > 微信公众平台消息接口
 
