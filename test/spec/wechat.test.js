@@ -42,6 +42,10 @@ wechat.on('text', function (session) {
             ThumbMediaId:'mid'
         });
     }
+
+    if (session.incommingMessage.Content === 'voice') {
+        session.replyVocieMessage("001");
+    }
 });
 
 wechat.on('music', function (session) {
@@ -221,6 +225,37 @@ describe('wechat.js', function () {
                 });
         });
 
+        it('should be return image video', function (done) {
+
+            var message = template.merge('text', {
+                FromUserName: '1000001',
+                ToUserName: 'yali',
+                CreateTime: Date.now(),
+                Content: 'voice'
+            });
+
+            request(app)
+                .post('/api')
+                .send(message)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        done(err);
+                        return;
+                    }
+
+                    var body = res.text.toString();
+                    body.should.be.containEql('<ToUserName><![CDATA[1000001]]></ToUserName>');
+                    body.should.be.containEql('<FromUserName><![CDATA[yali]]></FromUserName>');
+                    body.should.match(/<CreateTime>\d{13}<\/CreateTime>/);
+                    body.should.be.containEql('<MsgType><![CDATA[voice]]></MsgType>');
+                    body.should.be.containEql('<Voice>');
+                    body.should.be.containEql('</Voice>');
+                    body.should.be.containEql('<MediaId><![CDATA[001]]></MediaId>');
+                    done();
+                });
+        });
+
         it('if on listener should be resonse empty', function (done) {
             var message = '<xml><MsgType><![CDATA[none]]></MsgType></xml>';
             request(app)
@@ -236,6 +271,10 @@ describe('wechat.js', function () {
                     body.should.be.empty;
                     done();
                 });
+        });
+
+        it('should be return news message',function(done){
+           //TODO:
         });
 
         it('should be 400', function (done) {
