@@ -1,4 +1,4 @@
-# weixin-node [![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat)
+# li-wechat [![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat)
 
 > 微信公众平台消息接口
 
