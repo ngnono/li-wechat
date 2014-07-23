@@ -87,7 +87,7 @@ describe('wechat.js', function () {
         'signature': '9044c687938af6c07d9a7656489e339c48ea63c2',
         'timestamp': '1406089150',
         'nonce': '1487568454',
-        'echoStr': '2386340194658760639'
+        'echostr': '2386340194658760639'
     };
 
     describe('Verify GET', function () {
