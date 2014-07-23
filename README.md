@@ -40,7 +40,7 @@ _(Coming soon)_
        if (!wechat.checkSignature(req)) {
            res.send(400, 'signature')
        } else {
-           res.send(req.query.echoStr);
+           res.send(req.query.echostr);
        }
    });
 

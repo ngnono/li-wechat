@@ -11,7 +11,7 @@ var app = express();
 
 // 初始化签名
 var wechat = new Wechat({
-    token: '001'
+    token: 'yali'
 });
 
 wechat.on('text', function (session) {
@@ -71,9 +71,9 @@ wechat.on('event.subscribe', function (session) {
 
 app.get('/api', function (req, res) {
     if (!wechat.checkSignature(req)) {
-        res.send(400, 'signature')
+        res.send(400, 'signature error');
     } else {
-        res.send(req.query.echoStr);
+        res.send(req.query.echostr);
     }
 });
 
@@ -84,10 +84,10 @@ app.post('/api', function (req, res) {
 describe('wechat.js', function () {
 
     var query = {
-        'signature': '25c919119519e85e9493590a0e39bba8b7ef7d6a',
-        'timestamp': '23400000023',
-        'nonce': '1',
-        'echoStr': 'hello'
+        'signature': '9044c687938af6c07d9a7656489e339c48ea63c2',
+        'timestamp': '1406089150',
+        'nonce': '1487568454',
+        'echoStr': '2386340194658760639'
     };
 
     describe('Verify GET', function () {
@@ -104,10 +104,11 @@ describe('wechat.js', function () {
                 .expect(400, done);
         });
 
-        it('should response hello', function (done) {
+        it('should response 2386340194658760639', function (done) {
             request(app)
                 .get('/api?' + querystring.stringify(query))
-                .expect('hello', done);
+                .expect(200)
+                .expect('2386340194658760639', done);
         });
     });
 
