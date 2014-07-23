@@ -46,11 +46,11 @@ module.exports = function (grunt) {
             },
             coverage: {
                 options: {
-                    reporter: 'html-cov',
+                    reporter: 'json-cov',
                     require: 'test/blanket',
                     quiet: true,
                     encoding:'utf8',
-                    captureFile: 'coverage.html'
+                    captureFile: 'coverage.json'
                 },
                 src: ['test/**/*.js']
             }
