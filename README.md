@@ -18,7 +18,38 @@ _(Coming soon)_
 
 ## Examples
 
-_(Coming soon)_
+```js
+   /**
+    * demo fror li-wechat
+    */
+
+   var express = require('express');
+   var Wechat = require('li-wechat');
+
+   var app = express();
+
+   var wechat = new Wechat({
+       token: '25c919119519e85e9493590a0e39bba8b7ef7d6a'
+   });
+
+   wechat.on('text', function (session) {
+       session.replyTextMessage("Received:" + session.incommingMessage.Content);
+   });
+
+   app.get('/api', function (req, res) {
+       if (!wechat.checkSignature(req)) {
+           res.send(400, 'signature')
+       } else {
+           res.send(req.query.echoStr);
+       }
+   });
+
+   app.post('/api', function (req, res) {
+       wechat.loop(req, res);
+   });
+
+   app.listen(8080);
+```
 
 
 ## Contributing
