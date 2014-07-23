@@ -9,7 +9,7 @@
 Install the module with: `npm install li-wechat`
 
 ```js
-var wechat = require('li-wechat');
+var wechat = require('li-wechat')('TOKEN');
 ```
 
 ## Documentation
@@ -51,13 +51,9 @@ var wechat = require('li-wechat');
     */
 
    var express = require('express');
-   var Wechat = require('li-wechat');
+   var wechat = require('li-wechat')('25c919119519e85e9493590a0e39bba8b7ef7d6a');;
 
    var app = express();
-
-   var wechat = new Wechat({
-       token: '25c919119519e85e9493590a0e39bba8b7ef7d6a'
-   });
 
    wechat.on('text', function (session) {
        session.replyTextMessage("Received:" + session.incommingMessage.Content);

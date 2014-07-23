@@ -4,15 +4,10 @@ var request = require('supertest');
 var express = require('express');
 var querystring = require('querystring');
 
-var Wechat = require('../../lib/wechat.js');
+var wechat = require('../../lib/wechat.js')('yali');
 var Template = require('../../lib/template.js');
 
 var app = express();
-
-// 初始化签名
-var wechat = new Wechat({
-    token: 'yali'
-});
 
 wechat.on('text', function (session) {
 
@@ -81,7 +76,7 @@ app.post('/api', function (req, res) {
     wechat.loop(req, res);
 });
 
-describe('wechat.js', function () {
+describe('Wechat.js', function () {
 
     var query = {
         'signature': '9044c687938af6c07d9a7656489e339c48ea63c2',
@@ -89,12 +84,6 @@ describe('wechat.js', function () {
         'nonce': '1487568454',
         'echostr': '2386340194658760639'
     };
-
-    describe('instanceOf Wechat', function () {
-        it('should be instanceOf wechat', function () {
-            Wechat().should.be.instanceOf(Wechat);
-        });
-    });
 
     describe('Verify GET', function () {
 
