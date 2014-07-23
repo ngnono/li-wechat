@@ -1,12 +1,12 @@
 # 微信公众平台基础接口 [![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat) [![Coverage Status](https://img.shields.io/coveralls/liangyali/li-wechat.svg)](https://coveralls.io/r/liangyali/li-wechat)
 
-> 微信公众平台基础接口
-> 高级API coming soon!
+> * 微信公众平台基础接口
+> * 高级API coming soon!
 
 
 ## Getting Started
 
-Install the module with: `npm install li-wechat`
+Install the module with: `npm install li-wechat --save`
 
 ```js
 var wechat = require('li-wechat')('TOKEN');
@@ -45,7 +45,7 @@ var wechat = require('li-wechat')('TOKEN');
 ###调试消息
 > * 使用namespace为wechat的debug
 ####开启调试方式
-> * ```js
+> ```shell
     DEBUG = wechat node index.js
 ```
 
