@@ -1,0 +1,1181 @@
+{
+  "instrumentation": "node-jscoverage",
+  "sloc": 105,
+  "hits": 105,
+  "misses": 0,
+  "coverage": 100,
+  "files": [
+    {
+      "filename": "/Users/liangyali/dev/node/li-wechat/lib/session.js",
+      "coverage": 100,
+      "hits": 25,
+      "misses": 0,
+      "sloc": 25,
+      "source": {
+        "1": {
+          "source": "\"use strict\";",
+          "coverage": 1
+        },
+        "2": {
+          "source": "",
+          "coverage": ""
+        },
+        "3": {
+          "source": "function Session(req, res, incomingMessage, webchat) {",
+          "coverage": 1
+        },
+        "4": {
+          "source": "    this.req = req;",
+          "coverage": 9
+        },
+        "5": {
+          "source": "    this.res = res;",
+          "coverage": 9
+        },
+        "6": {
+          "source": "    this.incomingMessage = incomingMessage;",
+          "coverage": 9
+        },
+        "7": {
+          "source": "    this.wechat = webchat;",
+          "coverage": 9
+        },
+        "8": {
+          "source": "}",
+          "coverage": ""
+        },
+        "9": {
+          "source": "",
+          "coverage": ""
+        },
+        "10": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "11": {
+          "source": " * 发送消息",
+          "coverage": ""
+        },
+        "12": {
+          "source": " * @param {Object} outgoingMessage",
+          "coverage": ""
+        },
+        "13": {
+          "source": " */",
+          "coverage": ""
+        },
+        "14": {
+          "source": "Session.prototype.replyMessage = function (outgoingMessage) {",
+          "coverage": 1
+        },
+        "15": {
+          "source": "    outgoingMessage.FromUserName = this.incomingMessage.ToUserName;",
+          "coverage": 8
+        },
+        "16": {
+          "source": "    outgoingMessage.ToUserName = this.incomingMessage.FromUserName;",
+          "coverage": 8
+        },
+        "17": {
+          "source": "    outgoingMessage.CreateTime = Date.now();",
+          "coverage": 8
+        },
+        "18": {
+          "source": "    this.wechat.replyMessage(this, outgoingMessage);",
+          "coverage": 8
+        },
+        "19": {
+          "source": "};",
+          "coverage": ""
+        },
+        "20": {
+          "source": "",
+          "coverage": ""
+        },
+        "21": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "22": {
+          "source": " * 发送文本信息",
+          "coverage": ""
+        },
+        "23": {
+          "source": " * @param {String} content",
+          "coverage": ""
+        },
+        "24": {
+          "source": " */",
+          "coverage": ""
+        },
+        "25": {
+          "source": "Session.prototype.replyTextMessage = function (content) {",
+          "coverage": 1
+        },
+        "26": {
+          "source": "    this.replyMessage({",
+          "coverage": 2
+        },
+        "27": {
+          "source": "        MsgType: 'text',",
+          "coverage": ""
+        },
+        "28": {
+          "source": "        Content: content || ''",
+          "coverage": ""
+        },
+        "29": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "30": {
+          "source": "};",
+          "coverage": ""
+        },
+        "31": {
+          "source": "",
+          "coverage": ""
+        },
+        "32": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "33": {
+          "source": " * 发送图文消息",
+          "coverage": ""
+        },
+        "34": {
+          "source": " * @param {Object} articles",
+          "coverage": ""
+        },
+        "35": {
+          "source": " *",
+          "coverage": ""
+        },
+        "36": {
+          "source": " * [{",
+          "coverage": ""
+        },
+        "37": {
+          "source": " *      Title:'测试标题',",
+          "coverage": ""
+        },
+        "38": {
+          "source": " *      Description:'描述',",
+          "coverage": ""
+        },
+        "39": {
+          "source": " *      PicUrl:'http://t.cn/test.jpg',",
+          "coverage": ""
+        },
+        "40": {
+          "source": " *      Url:'http://t.cn'",
+          "coverage": ""
+        },
+        "41": {
+          "source": " * }]",
+          "coverage": ""
+        },
+        "42": {
+          "source": " */",
+          "coverage": ""
+        },
+        "43": {
+          "source": "Session.prototype.replyNewMessage = function (articles) {",
+          "coverage": 1
+        },
+        "44": {
+          "source": "    articles = articles || [];",
+          "coverage": 2
+        },
+        "45": {
+          "source": "",
+          "coverage": ""
+        },
+        "46": {
+          "source": "    this.replyMessage({",
+          "coverage": 2
+        },
+        "47": {
+          "source": "        MsgType: 'news',",
+          "coverage": ""
+        },
+        "48": {
+          "source": "        ArticleCount: articles.length,",
+          "coverage": ""
+        },
+        "49": {
+          "source": "        Articles: articles",
+          "coverage": ""
+        },
+        "50": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "51": {
+          "source": "};",
+          "coverage": ""
+        },
+        "52": {
+          "source": "",
+          "coverage": ""
+        },
+        "53": {
+          "source": "",
+          "coverage": ""
+        },
+        "54": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "55": {
+          "source": " * 回复图片消息",
+          "coverage": ""
+        },
+        "56": {
+          "source": " * @param {Number} mediaId",
+          "coverage": ""
+        },
+        "57": {
+          "source": " */",
+          "coverage": ""
+        },
+        "58": {
+          "source": "Session.prototype.replyImageMessage = function (mediaId) {",
+          "coverage": 1
+        },
+        "59": {
+          "source": "    this.replyMessage({",
+          "coverage": 1
+        },
+        "60": {
+          "source": "        MsgType: 'image',",
+          "coverage": ""
+        },
+        "61": {
+          "source": "        MediaId: mediaId || ''",
+          "coverage": ""
+        },
+        "62": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "63": {
+          "source": "};",
+          "coverage": ""
+        },
+        "64": {
+          "source": "",
+          "coverage": ""
+        },
+        "65": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "66": {
+          "source": " * 回复语音消息",
+          "coverage": ""
+        },
+        "67": {
+          "source": " * @param {Number} mediaId",
+          "coverage": ""
+        },
+        "68": {
+          "source": " */",
+          "coverage": ""
+        },
+        "69": {
+          "source": "Session.prototype.replyVocieMessage = function (mediaId) {",
+          "coverage": 1
+        },
+        "70": {
+          "source": "    this.replyMessage({",
+          "coverage": 1
+        },
+        "71": {
+          "source": "        MsgType: 'voice',",
+          "coverage": ""
+        },
+        "72": {
+          "source": "        MediaId: mediaId || ''",
+          "coverage": ""
+        },
+        "73": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "74": {
+          "source": "};",
+          "coverage": ""
+        },
+        "75": {
+          "source": "",
+          "coverage": ""
+        },
+        "76": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "77": {
+          "source": " * 回复视频消息",
+          "coverage": ""
+        },
+        "78": {
+          "source": " * @param {Object} video",
+          "coverage": ""
+        },
+        "79": {
+          "source": " *",
+          "coverage": ""
+        },
+        "80": {
+          "source": " * Sample: {",
+          "coverage": ""
+        },
+        "81": {
+          "source": " *      MediaId:'',",
+          "coverage": ""
+        },
+        "82": {
+          "source": " *      Title:'',",
+          "coverage": ""
+        },
+        "83": {
+          "source": " *      Description:''",
+          "coverage": ""
+        },
+        "84": {
+          "source": " * }",
+          "coverage": ""
+        },
+        "85": {
+          "source": " */",
+          "coverage": ""
+        },
+        "86": {
+          "source": "Session.prototype.replyVideoMessage = function (video) {",
+          "coverage": 1
+        },
+        "87": {
+          "source": "    this.replyMessage({",
+          "coverage": 1
+        },
+        "88": {
+          "source": "        MsgType: 'video',",
+          "coverage": ""
+        },
+        "89": {
+          "source": "        MediaId: video.MediaId || '',",
+          "coverage": ""
+        },
+        "90": {
+          "source": "        Title: video.Title || '',",
+          "coverage": ""
+        },
+        "91": {
+          "source": "        Description: video.Description || '',",
+          "coverage": ""
+        },
+        "92": {
+          "source": "        ThumbMediaId: video.ThumbMediaId || ''",
+          "coverage": ""
+        },
+        "93": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "94": {
+          "source": "};",
+          "coverage": ""
+        },
+        "95": {
+          "source": "",
+          "coverage": ""
+        },
+        "96": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "97": {
+          "source": " *  回复音乐消息",
+          "coverage": ""
+        },
+        "98": {
+          "source": " *  @param {Object} music",
+          "coverage": ""
+        },
+        "99": {
+          "source": " *  {",
+          "coverage": ""
+        },
+        "100": {
+          "source": " *      Title:'',",
+          "coverage": ""
+        },
+        "101": {
+          "source": " *      Description:'',",
+          "coverage": ""
+        },
+        "102": {
+          "source": " *      MusicUrl:'',",
+          "coverage": ""
+        },
+        "103": {
+          "source": " *      HQMusicUrl:'',",
+          "coverage": ""
+        },
+        "104": {
+          "source": " *      ThumbMediaId:''",
+          "coverage": ""
+        },
+        "105": {
+          "source": " *  }",
+          "coverage": ""
+        },
+        "106": {
+          "source": " */",
+          "coverage": ""
+        },
+        "107": {
+          "source": "Session.prototype.replyMusicMessage = function (music) {",
+          "coverage": 1
+        },
+        "108": {
+          "source": "    this.replyMessage({",
+          "coverage": 1
+        },
+        "109": {
+          "source": "        MsgType: 'music',",
+          "coverage": ""
+        },
+        "110": {
+          "source": "        Title: music.Title || '',",
+          "coverage": ""
+        },
+        "111": {
+          "source": "        Description: music.Description || '',",
+          "coverage": ""
+        },
+        "112": {
+          "source": "        MusicUrl: music.MusicUrl || '',",
+          "coverage": ""
+        },
+        "113": {
+          "source": "        HQMusicUrl: music.HQMusicUrl || '',",
+          "coverage": ""
+        },
+        "114": {
+          "source": "        ThumbMediaId: music.ThumbMediaId || ''",
+          "coverage": ""
+        },
+        "115": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "116": {
+          "source": "};",
+          "coverage": ""
+        },
+        "117": {
+          "source": "",
+          "coverage": ""
+        },
+        "118": {
+          "source": "module.exports = Session;",
+          "coverage": 1
+        },
+        "119": {
+          "source": "",
+          "coverage": ""
+        }
+      }
+    },
+    {
+      "filename": "/Users/liangyali/dev/node/li-wechat/lib/template.js",
+      "coverage": 100,
+      "hits": 20,
+      "misses": 0,
+      "sloc": 20,
+      "source": {
+        "1": {
+          "source": "'use strice';",
+          "coverage": 1
+        },
+        "2": {
+          "source": "",
+          "coverage": ""
+        },
+        "3": {
+          "source": "var fs = require('fs');",
+          "coverage": 1
+        },
+        "4": {
+          "source": "var ejs = require('ejs');",
+          "coverage": 1
+        },
+        "5": {
+          "source": "",
+          "coverage": ""
+        },
+        "6": {
+          "source": "function Template() {",
+          "coverage": 1
+        },
+        "7": {
+          "source": "",
+          "coverage": ""
+        },
+        "8": {
+          "source": "    if (!(this instanceof Template)) {",
+          "coverage": 4
+        },
+        "9": {
+          "source": "        return new Template();",
+          "coverage": 1
+        },
+        "10": {
+          "source": "    }",
+          "coverage": ""
+        },
+        "11": {
+          "source": "",
+          "coverage": ""
+        },
+        "12": {
+          "source": "    var templates = {};",
+          "coverage": 3
+        },
+        "13": {
+          "source": "    ['image', 'music', 'news', 'text', 'video', 'voice'].forEach(function (name) {",
+          "coverage": 3
+        },
+        "14": {
+          "source": "        var path = __dirname + '/templates/' + name + '.ejs';",
+          "coverage": 18
+        },
+        "15": {
+          "source": "        var tpl = fs.readFileSync(path, 'utf-8');",
+          "coverage": 18
+        },
+        "16": {
+          "source": "        templates[name] = ejs.compile(tpl);",
+          "coverage": 18
+        },
+        "17": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "18": {
+          "source": "",
+          "coverage": ""
+        },
+        "19": {
+          "source": "    this.templates = templates;",
+          "coverage": 3
+        },
+        "20": {
+          "source": "}",
+          "coverage": ""
+        },
+        "21": {
+          "source": "",
+          "coverage": ""
+        },
+        "22": {
+          "source": "Template.prototype.get = function (name) {",
+          "coverage": 1
+        },
+        "23": {
+          "source": "    return this.templates[name];",
+          "coverage": 25
+        },
+        "24": {
+          "source": "};",
+          "coverage": ""
+        },
+        "25": {
+          "source": "",
+          "coverage": ""
+        },
+        "26": {
+          "source": "Template.prototype.merge = function (name, data) {",
+          "coverage": 1
+        },
+        "27": {
+          "source": "    var compiledTpl = this.get(name);",
+          "coverage": 19
+        },
+        "28": {
+          "source": "",
+          "coverage": ""
+        },
+        "29": {
+          "source": "    if (!compiledTpl) {",
+          "coverage": 19
+        },
+        "30": {
+          "source": "        throw new Error('template is empty:[ ' + name + ' ]');",
+          "coverage": 1
+        },
+        "31": {
+          "source": "    }",
+          "coverage": ""
+        },
+        "32": {
+          "source": "    return compiledTpl(data);",
+          "coverage": 18
+        },
+        "33": {
+          "source": "};",
+          "coverage": ""
+        },
+        "34": {
+          "source": "",
+          "coverage": ""
+        },
+        "35": {
+          "source": "module.exports = Template;",
+          "coverage": 1
+        },
+        "36": {
+          "source": "",
+          "coverage": ""
+        }
+      }
+    },
+    {
+      "filename": "/Users/liangyali/dev/node/li-wechat/lib/wechat.js",
+      "coverage": 100,
+      "hits": 60,
+      "misses": 0,
+      "sloc": 60,
+      "source": {
+        "1": {
+          "source": "'use strict';",
+          "coverage": 1
+        },
+        "2": {
+          "source": "",
+          "coverage": ""
+        },
+        "3": {
+          "source": "var util = require('util');",
+          "coverage": 1
+        },
+        "4": {
+          "source": "var events = require('events');",
+          "coverage": 1
+        },
+        "5": {
+          "source": "var sha1 = require('sha1');",
+          "coverage": 1
+        },
+        "6": {
+          "source": "var xml2js = require('xml2js');",
+          "coverage": 1
+        },
+        "7": {
+          "source": "var debug = require('debug')('Wechat');",
+          "coverage": 1
+        },
+        "8": {
+          "source": "var Session = require('./session.js');",
+          "coverage": 1
+        },
+        "9": {
+          "source": "var template = require('./template.js')();",
+          "coverage": 1
+        },
+        "10": {
+          "source": "",
+          "coverage": ""
+        },
+        "11": {
+          "source": "function Wechat(token) {",
+          "coverage": 1
+        },
+        "12": {
+          "source": "",
+          "coverage": ""
+        },
+        "13": {
+          "source": "    if (!(this instanceof Wechat)) {",
+          "coverage": 2
+        },
+        "14": {
+          "source": "        return new Wechat(token);",
+          "coverage": 1
+        },
+        "15": {
+          "source": "    }",
+          "coverage": ""
+        },
+        "16": {
+          "source": "",
+          "coverage": ""
+        },
+        "17": {
+          "source": "    this.token = token || '';",
+          "coverage": 1
+        },
+        "18": {
+          "source": "",
+          "coverage": ""
+        },
+        "19": {
+          "source": "    events.EventEmitter.call(this);",
+          "coverage": 1
+        },
+        "20": {
+          "source": "}",
+          "coverage": ""
+        },
+        "21": {
+          "source": "",
+          "coverage": ""
+        },
+        "22": {
+          "source": "util.inherits(Wechat, events.EventEmitter);",
+          "coverage": 1
+        },
+        "23": {
+          "source": "",
+          "coverage": ""
+        },
+        "24": {
+          "source": "",
+          "coverage": ""
+        },
+        "25": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "26": {
+          "source": " * 验证消息真实性",
+          "coverage": ""
+        },
+        "27": {
+          "source": " * @{@link http://mp.weixin.qq.com/wiki/index.php?title=验证消息真实性}",
+          "coverage": ""
+        },
+        "28": {
+          "source": " * @param {Request} req",
+          "coverage": ""
+        },
+        "29": {
+          "source": " * @return {Boolean}",
+          "coverage": ""
+        },
+        "30": {
+          "source": " */",
+          "coverage": ""
+        },
+        "31": {
+          "source": "Wechat.prototype.checkSignature = function (req, token) {",
+          "coverage": 1
+        },
+        "32": {
+          "source": "",
+          "coverage": ""
+        },
+        "33": {
+          "source": "    debug('[check Signature params] %s', JSON.stringify(req.query, null, ' '));",
+          "coverage": 3
+        },
+        "34": {
+          "source": "",
+          "coverage": ""
+        },
+        "35": {
+          "source": "    req.query = req.query || {};",
+          "coverage": 3
+        },
+        "36": {
+          "source": "    var signature = req.query.signature || '';",
+          "coverage": 3
+        },
+        "37": {
+          "source": "    var timestamp = req.query.timestamp || '';",
+          "coverage": 3
+        },
+        "38": {
+          "source": "    var once = req.query.nonce || '';",
+          "coverage": 3
+        },
+        "39": {
+          "source": "",
+          "coverage": ""
+        },
+        "40": {
+          "source": "    var arr = [token || this.token, timestamp, once];",
+          "coverage": 3
+        },
+        "41": {
+          "source": "    arr.sort();",
+          "coverage": 3
+        },
+        "42": {
+          "source": "",
+          "coverage": ""
+        },
+        "43": {
+          "source": "    var str = sha1(arr.join(''));",
+          "coverage": 3
+        },
+        "44": {
+          "source": "",
+          "coverage": ""
+        },
+        "45": {
+          "source": "    debug('[check Signature] %s -> %s ', signature, str);",
+          "coverage": 3
+        },
+        "46": {
+          "source": "",
+          "coverage": ""
+        },
+        "47": {
+          "source": "    return str === signature;",
+          "coverage": 3
+        },
+        "48": {
+          "source": "};",
+          "coverage": ""
+        },
+        "49": {
+          "source": "",
+          "coverage": ""
+        },
+        "50": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "51": {
+          "source": " *  处理消息",
+          "coverage": ""
+        },
+        "52": {
+          "source": " * @{@link http://mp.weixin.qq.com/wiki/index.php?title=接收普通消息}",
+          "coverage": ""
+        },
+        "53": {
+          "source": " * @{@link http://mp.weixin.qq.com/wiki/index.php?title=接收事件推送}",
+          "coverage": ""
+        },
+        "54": {
+          "source": " * @{@link http://mp.weixin.qq.com/wiki/index.php?title=接收语音识别结果}",
+          "coverage": ""
+        },
+        "55": {
+          "source": " * @param {Request} req",
+          "coverage": ""
+        },
+        "56": {
+          "source": " * @param {Response} res",
+          "coverage": ""
+        },
+        "57": {
+          "source": " *        dependence on res.send",
+          "coverage": ""
+        },
+        "58": {
+          "source": " */",
+          "coverage": ""
+        },
+        "59": {
+          "source": "Wechat.prototype.loop = function (req, res) {",
+          "coverage": 1
+        },
+        "60": {
+          "source": "",
+          "coverage": ""
+        },
+        "61": {
+          "source": "    var chunks = [];",
+          "coverage": 10
+        },
+        "62": {
+          "source": "    var size = 0;",
+          "coverage": 10
+        },
+        "63": {
+          "source": "",
+          "coverage": ""
+        },
+        "64": {
+          "source": "    req.setEncoding('utf8');",
+          "coverage": 10
+        },
+        "65": {
+          "source": "",
+          "coverage": ""
+        },
+        "66": {
+          "source": "    req.on('data', function (chunk) {",
+          "coverage": 10
+        },
+        "67": {
+          "source": "        chunks.push(chunk);",
+          "coverage": 10
+        },
+        "68": {
+          "source": "        size += chunk.length;",
+          "coverage": 10
+        },
+        "69": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "70": {
+          "source": "",
+          "coverage": ""
+        },
+        "71": {
+          "source": "    var self = this;",
+          "coverage": 10
+        },
+        "72": {
+          "source": "",
+          "coverage": ""
+        },
+        "73": {
+          "source": "    req.on('end', function () {",
+          "coverage": 10
+        },
+        "74": {
+          "source": "        var buffer = Buffer.concat(chunks, size);",
+          "coverage": 10
+        },
+        "75": {
+          "source": "",
+          "coverage": ""
+        },
+        "76": {
+          "source": "        var rawMessage = buffer.toString();",
+          "coverage": 10
+        },
+        "77": {
+          "source": "        xml2js.parseString(rawMessage, function (err, result) {",
+          "coverage": 10
+        },
+        "78": {
+          "source": "",
+          "coverage": ""
+        },
+        "79": {
+          "source": "            if (err) {",
+          "coverage": 10
+        },
+        "80": {
+          "source": "                debug('[message parse] message parser error:%s', rawMessage);",
+          "coverage": 1
+        },
+        "81": {
+          "source": "                res.send(400, \"req.body can't covert to json object\");",
+          "coverage": 1
+        },
+        "82": {
+          "source": "                self.emit('messageError', {data: buffer, err: err});",
+          "coverage": 1
+        },
+        "83": {
+          "source": "                return;",
+          "coverage": 1
+        },
+        "84": {
+          "source": "            }",
+          "coverage": ""
+        },
+        "85": {
+          "source": "",
+          "coverage": ""
+        },
+        "86": {
+          "source": "            // parse message",
+          "coverage": ""
+        },
+        "87": {
+          "source": "            var message = {};",
+          "coverage": 9
+        },
+        "88": {
+          "source": "",
+          "coverage": ""
+        },
+        "89": {
+          "source": "            Object.keys(result.xml).forEach(function (key) {",
+          "coverage": 9
+        },
+        "90": {
+          "source": "                message[key] = result.xml[key][0];",
+          "coverage": 41
+        },
+        "91": {
+          "source": "            });",
+          "coverage": ""
+        },
+        "92": {
+          "source": "",
+          "coverage": ""
+        },
+        "93": {
+          "source": "            var session = new Session(req, res, message, self);",
+          "coverage": 9
+        },
+        "94": {
+          "source": "",
+          "coverage": ""
+        },
+        "95": {
+          "source": "            //event process",
+          "coverage": ""
+        },
+        "96": {
+          "source": "            var eventName = session.incomingMessage.MsgType;",
+          "coverage": 9
+        },
+        "97": {
+          "source": "            if (eventName === 'event') {",
+          "coverage": 9
+        },
+        "98": {
+          "source": "                eventName += '.' + session.incomingMessage.Event;",
+          "coverage": 1
+        },
+        "99": {
+          "source": "            }",
+          "coverage": ""
+        },
+        "100": {
+          "source": "",
+          "coverage": ""
+        },
+        "101": {
+          "source": "            debug('[eventName] %s', eventName);",
+          "coverage": 9
+        },
+        "102": {
+          "source": "            debug('[incomingMessage] %s', JSON.stringify(session.incomingMessage, null, ' '));",
+          "coverage": 9
+        },
+        "103": {
+          "source": "            self.emit(eventName, session);",
+          "coverage": 9
+        },
+        "104": {
+          "source": "",
+          "coverage": ""
+        },
+        "105": {
+          "source": "            // not has event listener end response",
+          "coverage": ""
+        },
+        "106": {
+          "source": "            if (self.listeners(eventName).length === 0) {",
+          "coverage": 9
+        },
+        "107": {
+          "source": "                debug('[EventListener] do not has listener,res.end,eventName:%s', eventName);",
+          "coverage": 1
+        },
+        "108": {
+          "source": "                res.end();",
+          "coverage": 1
+        },
+        "109": {
+          "source": "            }",
+          "coverage": ""
+        },
+        "110": {
+          "source": "        });",
+          "coverage": ""
+        },
+        "111": {
+          "source": "    });",
+          "coverage": ""
+        },
+        "112": {
+          "source": "};",
+          "coverage": ""
+        },
+        "113": {
+          "source": "",
+          "coverage": ""
+        },
+        "114": {
+          "source": "/**",
+          "coverage": ""
+        },
+        "115": {
+          "source": " * 应答消息",
+          "coverage": ""
+        },
+        "116": {
+          "source": " * @{@link http://mp.weixin.qq.com/wiki/index.php?title=发送被动响应消息}",
+          "coverage": ""
+        },
+        "117": {
+          "source": " * @param {Session} session",
+          "coverage": ""
+        },
+        "118": {
+          "source": " * @param {Message} outgoingMessage",
+          "coverage": ""
+        },
+        "119": {
+          "source": " */",
+          "coverage": ""
+        },
+        "120": {
+          "source": "Wechat.prototype.replyMessage = function (session, outgoingMessage) {",
+          "coverage": 1
+        },
+        "121": {
+          "source": "    session.res.setHeader('Content-Type', 'application/xml');",
+          "coverage": 8
+        },
+        "122": {
+          "source": "    debug('[outgoingMessage]' + JSON.stringify(outgoingMessage, null, ' '));",
+          "coverage": 8
+        },
+        "123": {
+          "source": "    session.res.send(template.merge(outgoingMessage.MsgType, outgoingMessage));",
+          "coverage": 8
+        },
+        "124": {
+          "source": "};",
+          "coverage": ""
+        },
+        "125": {
+          "source": "",
+          "coverage": ""
+        },
+        "126": {
+          "source": "exports = module.exports = Wechat;",
+          "coverage": 1
+        },
+        "127": {
+          "source": "",
+          "coverage": ""
+        },
+        "128": {
+          "source": "",
+          "coverage": ""
+        }
+      }
+    }
+  ],
+  "stats": {
+    "suites": 0,
+    "tests": 0,
+    "passes": 0,
+    "pending": 0,
+    "failures": 0,
+    "start": "2014-07-23T16:36:27.763Z",
+    "end": "2014-07-23T16:36:27.763Z",
+    "duration": 0
+  },
+  "tests": [],
+  "failures": [],
+  "passes": []
+}
