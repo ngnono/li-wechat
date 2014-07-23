@@ -16,11 +16,11 @@ var wechat = new Wechat({
 
 wechat.on('text', function (session) {
 
-    if (session.incommingMessage.Content === 'text') {
+    if (session.incomingMessage.Content === 'text') {
         session.replyTextMessage("Hello World!");
     }
 
-    if (session.incommingMessage.Content === 'music') {
+    if (session.incomingMessage.Content === 'music') {
         session.replyMusicMessage({
             Title: '音乐标题',
             Description: '音乐描述',
@@ -30,11 +30,11 @@ wechat.on('text', function (session) {
         });
     }
 
-    if (session.incommingMessage.Content === 'image') {
+    if (session.incomingMessage.Content === 'image') {
         session.replyImageMessage('001');
     }
 
-    if (session.incommingMessage.Content === 'video') {
+    if (session.incomingMessage.Content === 'video') {
         session.replyVideoMessage({
             MediaId: '001',
             Title: 'b001',
@@ -43,11 +43,11 @@ wechat.on('text', function (session) {
         });
     }
 
-    if (session.incommingMessage.Content === 'voice') {
+    if (session.incomingMessage.Content === 'voice') {
         session.replyVocieMessage("001");
     }
 
-    if (session.incommingMessage.Content === 'news') {
+    if (session.incomingMessage.Content === 'news') {
         session.replyNewMessage([
             {
                 Title: 'item1',
@@ -66,7 +66,7 @@ wechat.on('text', function (session) {
 });
 
 wechat.on('event.subscribe', function (session) {
-    session.replyTextMessage(session.incommingMessage.Event);
+    session.replyTextMessage(session.incomingMessage.Event);
 });
 
 app.get('/api', function (req, res) {
@@ -89,6 +89,12 @@ describe('wechat.js', function () {
         'nonce': '1487568454',
         'echostr': '2386340194658760639'
     };
+
+    describe('instanceOf Wechat', function () {
+        it('should be instanceOf wechat', function () {
+            Wechat().should.be.instanceOf(Wechat);
+        });
+    });
 
     describe('Verify GET', function () {
 

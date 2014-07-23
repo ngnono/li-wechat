@@ -1,6 +1,6 @@
 {
     "name": "li-wechat",
-    "version": "1.0.4",
+    "version": "0.1.0",
     "main": "lib/wechat.js",
     "description": "wechat api ",
     "homepage": "http://liangyali.com",
