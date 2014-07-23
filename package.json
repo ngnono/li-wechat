@@ -1,6 +1,6 @@
 {
     "name": "li-wechat",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "main": "lib/wechat.js",
     "description": "wechat api ",
     "homepage": "http://liangyali.com",
@@ -44,5 +44,11 @@
         "request": "^2.37.0",
         "sha1": "^1.1.0",
         "xml2js": "^0.4.4"
+    },
+    "scripts": {
+        "prepublish": "npm prune",
+        "test": "mocha --require test/support/env --reporter dot --check-leaks test/ test/acceptance/",
+        "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --reporter dot --check-leaks test/ test/acceptance/",
+        "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/support/env --reporter spec --check-leaks test/ test/acceptance/"
     }
 }
