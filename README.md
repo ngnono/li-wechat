@@ -15,12 +15,12 @@ var wechat = require('li-wechat');
 ## Documentation
 
 ###接收的消息类型
-> *  text       文本消息
-> *  image      图片消息
-> *  voice      语音消息
-> *  video      视频消息
-> *  location   地理位置消息
-> *  link       链接消息
+> *  __text__       文本消息
+> *  __image__      图片消息
+> *  __voice__      语音消息
+> *  __video__      视频消息
+> *  __location__   地理位置消息
+> *  __link__       链接消息
 
 > ```js
    wechat.on('text',function(session){
@@ -29,12 +29,12 @@ var wechat = require('li-wechat');
 ```
 
 ###接收事件类型
-> *  event.subscribe        关注关注事件
-> *  event.unsubscribe      取消关注事件
-> *  event.SCAN             扫描带参数二维码事件,用户已关注时的事件推送
-> *  event.LOCATION         上报地理位置事件
-> *  event.CLICK            点击菜单拉取消息时的事件推送
-> *  event.VIEW             点击菜单跳转链接时的事件推送
+> *  __event.subscribe__        关注关注事件
+> *  __event.unsubscribe__      取消关注事件
+> *  __event.SCAN__             扫描带参数二维码事件,用户已关注时的事件推送
+> *  __event.LOCATION__         上报地理位置事件
+> *  __event.CLICK__            点击菜单拉取消息时的事件推送
+> *  __event.VIEW__             点击菜单跳转链接时的事件推送
 
 > ```js
    wechat.on('event.subscribe',function(session){
