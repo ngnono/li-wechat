@@ -39,17 +39,34 @@ wechat.on('text', function (session) {
             MediaId: '001',
             Title: 'b001',
             Description: 'd001',
-            ThumbMediaId:'mid'
+            ThumbMediaId: 'mid'
         });
     }
 
     if (session.incommingMessage.Content === 'voice') {
         session.replyVocieMessage("001");
     }
+
+    if (session.incommingMessage.Content === 'news') {
+        session.replyNewMessage([
+            {
+                Title: 'item1',
+                Description: '描述1',
+                PicUrl: 'http://pic.co/1.jpg',
+                Url: 'http://url.co/1'
+            },
+            {
+                Title: 'item2',
+                Description: '描述2',
+                PicUrl: 'http://pic.co/2.jpg',
+                Url: 'http://url.co/2'
+            }
+        ]);
+    }
 });
 
-wechat.on('music', function (session) {
-
+wechat.on('event.subscribe', function (session) {
+    session.replyTextMessage(session.incommingMessage.Event);
 });
 
 app.get('/api', function (req, res) {
@@ -191,6 +208,34 @@ describe('wechat.js', function () {
                 });
         });
 
+        it('should be return news message', function (done) {
+
+            var message = template.merge('text', {
+                FromUserName: '1000001',
+                ToUserName: 'yali',
+                CreateTime: Date.now(),
+                Content: 'news'
+            });
+
+            request(app)
+                .post('/api')
+                .send(message)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        done(err);
+                        return;
+                    }
+
+                    var body = res.text.toString();
+                    body.should.be.containEql('<ToUserName><![CDATA[1000001]]></ToUserName>');
+                    body.should.be.containEql('<FromUserName><![CDATA[yali]]></FromUserName>');
+                    body.should.match(/<CreateTime>\d{13}<\/CreateTime>/);
+                    body.should.be.containEql('<MsgType><![CDATA[news]]></MsgType>');
+                    done();
+                });
+        });
+
         it('should be return image video', function (done) {
 
             var message = template.merge('text', {
@@ -273,8 +318,68 @@ describe('wechat.js', function () {
                 });
         });
 
-        it('should be return news message',function(done){
-           //TODO:
+        it('should be return news message', function (done) {
+            var message = template.merge('text', {
+                FromUserName: 'FromUser',
+                ToUserName: 'toUser',
+                CreateTime: Date.now(),
+                Content: 'news'
+            });
+
+            request(app)
+                .post('/api')
+                .send(message)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        done(err);
+                        return;
+                    }
+
+                    var body = res.text.toString();
+                    body.should.be.containEql('<ToUserName><![CDATA[FromUser]]></ToUserName>');
+                    body.should.be.containEql('<FromUserName><![CDATA[toUser]]></FromUserName>');
+                    body.should.match(/<CreateTime>\d{13}<\/CreateTime>/);
+                    body.should.be.containEql('<Articles>');
+                    body.should.be.containEql('</Articles>');
+                    body.should.be.containEql('<Title><![CDATA[item1]]></Title>');
+                    body.should.be.containEql('<Description><![CDATA[描述1]]></Description>');
+                    body.should.be.containEql('<PicUrl><![CDATA[http://pic.co/1.jpg]]></PicUrl>');
+                    body.should.be.containEql('<Url><![CDATA[http://url.co/1]]></Url>');
+                    body.should.be.containEql('<Title><![CDATA[item2]]></Title>');
+                    body.should.be.containEql('<Description><![CDATA[描述2]]></Description>');
+                    body.should.be.containEql('<PicUrl><![CDATA[http://pic.co/2.jpg]]></PicUrl>');
+                    body.should.be.containEql('<Url><![CDATA[http://url.co/2]]></Url>');
+                    done();
+                });
+        });
+
+        it('send event should be return text message', function (done) {
+            var message = '<xml>' +
+                '<ToUserName><![CDATA[toUser]]></ToUserName> ' +
+                '<FromUserName><![CDATA[FromUser]]></FromUserName> ' +
+                '<CreateTime>123456789</CreateTime>' +
+                '<MsgType><![CDATA[event]]></MsgType> ' +
+                '<Event><![CDATA[subscribe]]></Event> ' +
+                '</xml>';
+
+            request(app)
+                .post('/api')
+                .send(message)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        done(err);
+                        return;
+                    }
+
+                    var body = res.text.toString();
+                    body.should.be.containEql('<ToUserName><![CDATA[FromUser]]></ToUserName>');
+                    body.should.be.containEql('<FromUserName><![CDATA[toUser]]></FromUserName>');
+                    body.should.match(/<CreateTime>\d{13}<\/CreateTime>/);
+                    body.should.be.containEql('<Content><![CDATA[subscribe]]></Content>');
+                    done();
+                });
         });
 
         it('should be 400', function (done) {

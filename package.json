@@ -24,6 +24,7 @@
   ],
   "devDependencies": {
     "express": "^4.6.1",
+    "grunt-blanket": "0.0.8",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-nodeunit": "^0.3.3",
     "grunt-contrib-watch": "^0.6.1",
@@ -38,6 +39,7 @@
     "test": "grunt"
   },
   "dependencies": {
+    "blanket": "^1.1.6",
     "debug": "^1.0.4",
     "ejs": "^1.0.0",
     "request": "^2.37.0",

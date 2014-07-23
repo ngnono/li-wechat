@@ -8,6 +8,7 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
         jshint: {
             options: {
                 jshintrc: '.jshintrc',
@@ -27,11 +28,11 @@ module.exports = function (grunt) {
             },
             lib: {
                 files: '<%= jshint.lib.src %>',
-                tasks: ['jshint:lib', 'mochaTest']
+                tasks: ['jshint:lib', 'mochaTest:test', 'mochaTest:coverage']
             },
             test: {
                 files: '<%= jshint.test.src %>',
-                tasks: ['mochaTest']
+                tasks: ['mochaTest:test', 'mochaTest:coverage']
             }
         },
         // Configure a mochaTest task
@@ -42,6 +43,24 @@ module.exports = function (grunt) {
                     timeout: 2000
                 },
                 src: ['test/**/*.js']
+            },
+            coverage: {
+                options: {
+                    reporter: 'html-cov',
+                    require: 'test/blanket',
+                    quiet: true,
+                    encoding:'utf8',
+                    captureFile: 'coverage.html'
+                },
+                src: ['test/**/*.js']
+            }
+        },
+        blanket: {
+            options: {
+                debug: true
+            },
+            files: {
+                'test/': ['lib/']
             }
         }
     });
@@ -49,10 +68,13 @@ module.exports = function (grunt) {
     // Add the grunt-mocha-test tasks.
     grunt.loadNpmTasks('grunt-mocha-test');
 
+    // add the grunt-blanket tasks
+    grunt.loadNpmTasks('grunt-blanket');
+
     // Default task.
     grunt.registerTask('default', 'mochaTest');
-    grunt.registerTask('default', ['jshint', 'mochaTest']);
+    grunt.registerTask('default', ['jshint', 'mochaTest', 'blanket']);
 
-    grunt.registerTask('test', ['mochaTest']);
+    grunt.registerTask('test', ['mochaTest:test', 'mochaTest:coverage']);
 
 };
