@@ -42,6 +42,13 @@ var wechat = require('li-wechat')('TOKEN');
    });
 ```
 
+###调试消息
+> * 使用namespace为wechat的debug
+####开启调试方式
+> * ```js
+    DEBUG = wechat node index.js
+```
+
 
 ## Examples
 
@@ -51,12 +58,12 @@ var wechat = require('li-wechat')('TOKEN');
     */
 
    var express = require('express');
-   var wechat = require('li-wechat')('25c919119519e85e9493590a0e39bba8b7ef7d6a');;
+   var wechat = require('li-wechat')('25c919119519e85e9493590a0e39bba8b7ef7d6a');
 
    var app = express();
 
    wechat.on('text', function (session) {
-       session.replyTextMessage("Received:" + session.incommingMessage.Content);
+       session.replyTextMessage("Received:" + session.incomingMessage.Content);
    });
 
    app.get('/api', function (req, res) {
@@ -71,7 +78,7 @@ var wechat = require('li-wechat')('TOKEN');
        wechat.loop(req, res);
    });
 
-   app.listen(8080);
+   app.listen(80);
 ```
 
 
