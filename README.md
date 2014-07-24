@@ -1,6 +1,7 @@
 # 微信公众平台基础接口
 [![NPM version](https://badge.fury.io/js/li-wechat.svg)](http://badge.fury.io/js/li-wechat)
-[![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat) [![Coverage Status](https://img.shields.io/coveralls/liangyali/li-wechat.svg)](https://coveralls.io/r/liangyali/li-wechat)
+[![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat)
+[![Coverage Status](https://coveralls.io/repos/liangyali/li-wechat/badge.png?branch=master)](https://coveralls.io/r/liangyali/li-wechat?branch=master)
 [![Status](https://david-dm.org/liangyali/li-wechat.png)](https://david-dm.org/liangyali/li-wechat)
 
 > * 微信公众平台基础接口
