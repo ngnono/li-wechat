@@ -75,7 +75,11 @@ var wechat = require('li-wechat')('TOKEN');
    });
 
    app.post('/api', function (req, res) {
-       wechat.loop(req, res);
+       if(wechat.checkSignature(req)){
+           wechat.loop(req, res);
+       }else{
+            res.end();
+       }
    });
 
    app.listen(80);
