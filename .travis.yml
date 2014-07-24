@@ -4,5 +4,4 @@ node_js:
 before_script:
   - npm install -g grunt-cli
 
-script: "npm run-script test-travis"
-after_script: "npm install coveralls@2.10.0 && cat ./coverage/lcov.info | coveralls"
+script: make test-coveralls
