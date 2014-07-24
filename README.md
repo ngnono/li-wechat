@@ -60,9 +60,7 @@ var wechat = require('li-wechat')('TOKEN');
 ```js
 
    var express = require('express');
-   var wechat = require('li-wechat')('25c919119519e85e9493590a0e39bba8b7ef7d6a');
-
-   var app = express();
+   var wechat = require('li-wechat')('yali');
 
    var app = express();
 
@@ -74,7 +72,7 @@ var wechat = require('li-wechat')('TOKEN');
        return wechat.process(req, res);
    });
 
-   app.listen(8080);
+   app.listen(80);
 ```
 
 

@@ -8,7 +8,7 @@ var wechat = require('../lib/wechat.js')('yali');
 var app = express();
 
 wechat.on('text', function (session) {
-    session.replyTextMessage("Received:" + session.incomingMessage.Content);
+    session.replyTextMessage("@" + session.incomingMessage.Content);
 });
 
 app.use('/api', function (req, res) {
