@@ -43,6 +43,16 @@ module.exports = function (grunt) {
                     timeout: 2000
                 },
                 src: ['test/**/*.js']
+            },
+            coverage: {
+                options: {
+                    reporter: 'html-cov',
+                    require: 'test/blanket',
+                    quiet: true,
+                    encoding:'utf8',
+                    captureFile: 'coverage.html'
+                },
+                src: ['test/**/*.js']
             }
         },
         blanket: {
@@ -58,10 +68,13 @@ module.exports = function (grunt) {
     // Add the grunt-mocha-test tasks.
     grunt.loadNpmTasks('grunt-mocha-test');
 
+    // add the grunt-blanket tasks
+    grunt.loadNpmTasks('grunt-blanket');
+
     // Default task.
     grunt.registerTask('default', 'mochaTest');
     grunt.registerTask('default', ['jshint', 'mochaTest', 'blanket']);
 
-    grunt.registerTask('test', ['mochaTest:test']);
+    grunt.registerTask('test', ['mochaTest:test', 'mochaTest:coverage']);
 
 };

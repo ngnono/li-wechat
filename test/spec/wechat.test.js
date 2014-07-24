@@ -4,18 +4,23 @@ var request = require('supertest');
 var express = require('express');
 var querystring = require('querystring');
 
-var wechat = require('../../lib/wechat.js')('yali');
+var Wechat = require('../../lib/wechat.js');
 var Template = require('../../lib/template.js');
 
 var app = express();
 
+// 初始化签名
+var wechat = new Wechat({
+    token: '001'
+});
+
 wechat.on('text', function (session) {
 
-    if (session.incomingMessage.Content === 'text') {
+    if (session.incommingMessage.Content === 'text') {
         session.replyTextMessage("Hello World!");
     }
 
-    if (session.incomingMessage.Content === 'music') {
+    if (session.incommingMessage.Content === 'music') {
         session.replyMusicMessage({
             Title: '音乐标题',
             Description: '音乐描述',
@@ -25,11 +30,11 @@ wechat.on('text', function (session) {
         });
     }
 
-    if (session.incomingMessage.Content === 'image') {
+    if (session.incommingMessage.Content === 'image') {
         session.replyImageMessage('001');
     }
 
-    if (session.incomingMessage.Content === 'video') {
+    if (session.incommingMessage.Content === 'video') {
         session.replyVideoMessage({
             MediaId: '001',
             Title: 'b001',
@@ -38,11 +43,11 @@ wechat.on('text', function (session) {
         });
     }
 
-    if (session.incomingMessage.Content === 'voice') {
+    if (session.incommingMessage.Content === 'voice') {
         session.replyVocieMessage("001");
     }
 
-    if (session.incomingMessage.Content === 'news') {
+    if (session.incommingMessage.Content === 'news') {
         session.replyNewMessage([
             {
                 Title: 'item1',
@@ -61,14 +66,14 @@ wechat.on('text', function (session) {
 });
 
 wechat.on('event.subscribe', function (session) {
-    session.replyTextMessage(session.incomingMessage.Event);
+    session.replyTextMessage(session.incommingMessage.Event);
 });
 
 app.get('/api', function (req, res) {
     if (!wechat.checkSignature(req)) {
-        res.send(400, 'signature error');
+        res.send(400, 'signature')
     } else {
-        res.send(req.query.echostr);
+        res.send(req.query.echoStr);
     }
 });
 
@@ -76,13 +81,13 @@ app.post('/api', function (req, res) {
     wechat.loop(req, res);
 });
 
-describe('Wechat.js', function () {
+describe('wechat.js', function () {
 
     var query = {
-        'signature': '9044c687938af6c07d9a7656489e339c48ea63c2',
-        'timestamp': '1406089150',
-        'nonce': '1487568454',
-        'echostr': '2386340194658760639'
+        'signature': '25c919119519e85e9493590a0e39bba8b7ef7d6a',
+        'timestamp': '23400000023',
+        'nonce': '1',
+        'echoStr': 'hello'
     };
 
     describe('Verify GET', function () {
@@ -99,11 +104,10 @@ describe('Wechat.js', function () {
                 .expect(400, done);
         });
 
-        it('should response 2386340194658760639', function (done) {
+        it('should response hello', function (done) {
             request(app)
                 .get('/api?' + querystring.stringify(query))
-                .expect(200)
-                .expect('2386340194658760639', done);
+                .expect('hello', done);
         });
     });
 
