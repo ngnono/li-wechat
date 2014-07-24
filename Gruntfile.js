@@ -44,14 +44,6 @@ module.exports = function (grunt) {
                 },
                 src: ['test/**/*.js']
             }
-        },
-        blanket: {
-            options: {
-                debug: true
-            },
-            files: {
-                'test/': ['lib/']
-            }
         }
     });
 
@@ -60,7 +52,7 @@ module.exports = function (grunt) {
 
     // Default task.
     grunt.registerTask('default', 'mochaTest');
-    grunt.registerTask('default', ['jshint', 'mochaTest', 'blanket']);
+    grunt.registerTask('default', ['jshint', 'mochaTest']);
 
     grunt.registerTask('test', ['mochaTest:test']);
 
