@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat)
 [![Coverage Status](https://coveralls.io/repos/liangyali/li-wechat/badge.png?branch=master)](https://coveralls.io/r/liangyali/li-wechat?branch=master)
 [![Status](https://david-dm.org/liangyali/li-wechat.png)](https://david-dm.org/liangyali/li-wechat)
+[![NPM](https://nodei.co/npm/li-wechat.png?downloads=true&stars=true)](https://nodei.co/npm/li-wechat/)
 
 > * 微信公众平台基础接口
 > * 高级API coming soon!
