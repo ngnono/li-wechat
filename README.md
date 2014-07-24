@@ -51,19 +51,18 @@ var wechat = require('li-wechat')('TOKEN');
 > * 使用namespace为wechat的debug
 ####开启调试方式
 > ```shell
-    DEBUG = wechat node index.js
+    DEBUG=wechat node index.js
 ```
 
 
 ## Examples
 
 ```js
-   /**
-    * demo fror li-wechat
-    */
 
    var express = require('express');
    var wechat = require('li-wechat')('25c919119519e85e9493590a0e39bba8b7ef7d6a');
+
+   var app = express();
 
    var app = express();
 
@@ -71,23 +70,11 @@ var wechat = require('li-wechat')('TOKEN');
        session.replyTextMessage("Received:" + session.incomingMessage.Content);
    });
 
-   app.get('/api', function (req, res) {
-       if (!wechat.checkSignature(req)) {
-           res.send(400, 'signature')
-       } else {
-           res.send(req.query.echostr);
-       }
+   app.use('/api', function (req, res) {
+       return wechat.process(req, res);
    });
 
-   app.post('/api', function (req, res) {
-       if(wechat.checkSignature(req)){
-           wechat.loop(req, res);
-       }else{
-            res.end();
-       }
-   });
-
-   app.listen(80);
+   app.listen(8080);
 ```
 
 

@@ -28,11 +28,7 @@ module.exports = function (grunt) {
             },
             lib: {
                 files: '<%= jshint.lib.src %>',
-                tasks: ['jshint:lib', 'mochaTest:test', 'mochaTest:coverage']
-            },
-            test: {
-                files: '<%= jshint.test.src %>',
-                tasks: ['mochaTest:test', 'mochaTest:coverage']
+                tasks: ['jshint:lib', 'mochaTest:test']
             }
         },
         // Configure a mochaTest task
