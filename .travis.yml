@@ -4,4 +4,4 @@ node_js:
 before_script:
   - npm install -g grunt-cli
 
-after_script: "npm install coveralls@2.10.0 && cat ./coverage.json | coveralls"
+script: make test-coveralls
