@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/liangyali/li-wechat.svg?branch=master)](https://travis-ci.org/liangyali/li-wechat)
 [![Coverage Status](https://coveralls.io/repos/liangyali/li-wechat/badge.png?branch=master)](https://coveralls.io/r/liangyali/li-wechat?branch=master)
 [![Status](https://david-dm.org/liangyali/li-wechat.png)](https://david-dm.org/liangyali/li-wechat)
+[![NPM](https://nodei.co/npm/li-wechat.png?downloads=true&stars=true)](https://nodei.co/npm/li-wechat/)
 
 > * 微信公众平台基础接口
 > * 高级API coming soon!
@@ -50,19 +51,16 @@ var wechat = require('li-wechat')('TOKEN');
 > * 使用namespace为wechat的debug
 ####开启调试方式
 > ```shell
-    DEBUG = wechat node index.js
+    DEBUG=wechat node index.js
 ```
 
 
 ## Examples
 
 ```js
-   /**
-    * demo fror li-wechat
-    */
 
    var express = require('express');
-   var wechat = require('li-wechat')('25c919119519e85e9493590a0e39bba8b7ef7d6a');
+   var wechat = require('li-wechat')('yali');
 
    var app = express();
 
@@ -70,20 +68,8 @@ var wechat = require('li-wechat')('TOKEN');
        session.replyTextMessage("Received:" + session.incomingMessage.Content);
    });
 
-   app.get('/api', function (req, res) {
-       if (!wechat.checkSignature(req)) {
-           res.send(400, 'signature')
-       } else {
-           res.send(req.query.echostr);
-       }
-   });
-
-   app.post('/api', function (req, res) {
-       if(wechat.checkSignature(req)){
-           wechat.loop(req, res);
-       }else{
-            res.end();
-       }
+   app.use('/api', function (req, res) {
+       return wechat.process(req, res);
    });
 
    app.listen(80);

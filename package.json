@@ -1,6 +1,6 @@
 {
   "name": "li-wechat",
-  "version": "0.1.2",
+  "version": "0.1.7",
   "main": "lib/wechat.js",
   "description": "wechat api ",
   "homepage": "http://liangyali.com",
@@ -20,7 +20,10 @@
   ],
   "keywords": [
     "li-wechat",
-    "wechat api "
+    "wechat",
+    "weixin",
+    "wexin",
+    "mp"
   ],
   "devDependencies": {
     "coveralls": "^2.11.1",

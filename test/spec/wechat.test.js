@@ -64,16 +64,9 @@ wechat.on('event.subscribe', function (session) {
     session.replyTextMessage(session.incomingMessage.Event);
 });
 
-app.get('/api', function (req, res) {
-    if (!wechat.checkSignature(req)) {
-        res.send(400, 'signature error');
-    } else {
-        res.send(req.query.echostr);
-    }
-});
 
-app.post('/api', function (req, res) {
-    wechat.loop(req, res);
+app.use('/api', function (req, res) {
+    return wechat.process(req, res);
 });
 
 describe('Wechat.js', function () {
@@ -120,10 +113,11 @@ describe('Wechat.js', function () {
             });
 
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
+                    console.log(err);
                     if (err) {
                         done(err);
                         return;
@@ -148,7 +142,7 @@ describe('Wechat.js', function () {
             });
 
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
@@ -183,7 +177,7 @@ describe('Wechat.js', function () {
             });
 
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
@@ -214,7 +208,7 @@ describe('Wechat.js', function () {
             });
 
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
@@ -242,7 +236,7 @@ describe('Wechat.js', function () {
             });
 
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
@@ -276,7 +270,7 @@ describe('Wechat.js', function () {
             });
 
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
@@ -300,7 +294,7 @@ describe('Wechat.js', function () {
         it('if on listener should be resonse empty', function (done) {
             var message = '<xml><MsgType><![CDATA[none]]></MsgType></xml>';
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
@@ -309,7 +303,7 @@ describe('Wechat.js', function () {
                         return;
                     }
                     var body = res.text.toString();
-                    body.should.be.empty;
+                    body.should.be.equal('unsupport none');
                     done();
                 });
         });
@@ -323,7 +317,7 @@ describe('Wechat.js', function () {
             });
 
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
@@ -360,7 +354,7 @@ describe('Wechat.js', function () {
                 '</xml>';
 
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send(message)
                 .expect(200)
                 .end(function (err, res) {
@@ -380,7 +374,7 @@ describe('Wechat.js', function () {
 
         it('should be 400', function (done) {
             request(app)
-                .post('/api')
+                .post('/api?' + querystring.stringify(query))
                 .send({name: 'ok'})
                 .expect(400)
                 .end(function (err, res) {
@@ -391,6 +385,20 @@ describe('Wechat.js', function () {
 
                     var body = res.text.toString();
                     body.should.be.containEql("req.body can't covert to json object");
+                    done();
+                })
+        });
+
+        it('should be return 403', function (done) {
+            request(app)
+                .put('/api?' + querystring.stringify(query))
+                .send({name: 'ok'})
+                .expect(403)
+                .end(function (err, res) {
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     done();
                 })
         });
