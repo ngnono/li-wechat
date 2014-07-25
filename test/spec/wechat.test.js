@@ -303,7 +303,7 @@ describe('Wechat.js', function () {
                         return;
                     }
                     var body = res.text.toString();
-                    body.should.be.equal('unsupport');
+                    body.should.be.equal('unsupport none');
                     done();
                 });
         });
